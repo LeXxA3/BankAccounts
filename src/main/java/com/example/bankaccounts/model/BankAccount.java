@@ -18,7 +18,7 @@ public class BankAccount {
     private String pinCode;
 
     @Column(name = "balance")
-    private double balance;
+    private int balance;
 
     public int getId() {
         return id;
@@ -44,11 +44,11 @@ public class BankAccount {
         this.pinCode = pinCode;
     }
 
-    public double getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 }

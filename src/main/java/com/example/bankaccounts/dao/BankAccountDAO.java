@@ -2,7 +2,7 @@ package com.example.bankaccounts.dao;
 
 public interface BankAccountDAO {
 
-    void createAccount(String name, String pinCode);
+    void createAccount(String name, String pinCode, int balance);
 
     void getAllAccounts();
 
