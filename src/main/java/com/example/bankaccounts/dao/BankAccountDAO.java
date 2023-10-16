@@ -7,4 +7,11 @@ public interface BankAccountDAO {
     void getAllAccounts();
 
     void editAccountBalance(int balanceChangeValue);
+
+
+    void depositMoney(int amount);
+
+    void withdrawMoney(int amount);
+
+    void transferMoney(int amount);
 }
