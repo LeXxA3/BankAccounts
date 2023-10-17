@@ -36,21 +36,21 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     @Override
     @Transactional
-    public void depositMoney(int depositAmount, int accountId) {
-        bankAccountRepository.depositMoney(depositAmount, accountId);
+    public void depositMoney(int accountId, int depositAmount) {
+        bankAccountRepository.depositMoney(accountId, depositAmount);
     }
 
     @Override
     @Transactional
-    public void withdrawMoney(int withdrawAmount, int accountId) {
-        bankAccountRepository.withdrawMoney(withdrawAmount, accountId);
+    public void withdrawMoney(int accountId, int withdrawAmount) {
+        bankAccountRepository.withdrawMoney(accountId, withdrawAmount);
 
     }
 
     @Override
     @Transactional
     public void transferMoney(int senderAccountId, int receiverAccountId, int transferAmount) {
-        bankAccountRepository.withdrawMoney(transferAmount, senderAccountId);
-        bankAccountRepository.depositMoney(transferAmount, receiverAccountId);
+        bankAccountRepository.withdrawMoney(senderAccountId, transferAmount);
+        bankAccountRepository.depositMoney(receiverAccountId, transferAmount);
     }
 }

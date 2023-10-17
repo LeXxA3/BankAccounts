@@ -73,7 +73,7 @@ public class BankAccountsController {
             modelAndView.setViewName("accountNotFound");
         } else {
             int depositAmount = Integer.parseInt(depositAmountInput);
-            bankAccountService.depositMoney(depositAmount, accountId);
+            bankAccountService.depositMoney(accountId, depositAmount);
             modelAndView.setViewName("redirect:/");
         }
         return modelAndView;
@@ -101,7 +101,7 @@ public class BankAccountsController {
             } else if (!pinInput.equals(foundAccount.getPinCode())) {
                 modelAndView.setViewName("incorrectPin");
             } else {
-                bankAccountService.withdrawMoney(withdrawAmount, accountId);
+                bankAccountService.withdrawMoney(accountId, withdrawAmount);
                 modelAndView.setViewName("redirect:/");
             }
         }
