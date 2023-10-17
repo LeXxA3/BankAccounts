@@ -12,13 +12,10 @@ public interface BankAccountService {
 
     BankAccount findAccount(int accountId);
 
+    void depositMoney(int depositAmount, int accountId);
 
-    String getPinCode(int accountId);
+    public void withdrawMoney(int withdrawAmount, int accountId);
 
-    void depositMoney(int accountBalance, int depositAmount, int accountId);
-
-    public void withdrawMoney(int accountBalance, int withdrawAmount, int accountId);
-
-//    void transferMoney(int amount);
+    void transferMoney(int senderAccountId, int receiverAccountId, int transferAmount);
 
 }

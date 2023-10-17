@@ -9,11 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 public interface BankAccountRepository extends JpaRepository<BankAccount, Integer> {
 
     @Modifying
-    @Query("update BankAccount account set account.balance = ?1 where account.id = ?2")
-    void modifyBalance(int moneyAmount, int id);
+    @Query("update BankAccount account set account.balance = account.balance + ?1 where account.id = ?2")
+    void depositMoney(int moneyAmount, int id);
 
-    @Query("select account.balance from BankAccount account where account.id = ?1")
-    int getCurrentBalance(int id);
+    @Modifying
+    @Query("update BankAccount account set account.balance = account.balance - ?1 where account.id = ?2")
+    void withdrawMoney(int moneyAmount, int id);
 
     @Query("select account.pinCode from BankAccount account where account.id = ?1")
     String getPinCode(int id);

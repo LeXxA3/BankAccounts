@@ -72,9 +72,8 @@ public class BankAccountsController {
         if (foundAccount == null) {
             modelAndView.setViewName("accountNotFound");
         } else {
-            int accountBalance = foundAccount.getBalance();
             int depositAmount = Integer.parseInt(depositAmountInput);
-            bankAccountService.depositMoney(accountBalance, depositAmount, accountId);
+            bankAccountService.depositMoney(depositAmount, accountId);
             modelAndView.setViewName("redirect:/");
         }
         return modelAndView;
@@ -99,10 +98,10 @@ public class BankAccountsController {
             int withdrawAmount = Integer.parseInt(withdrawAmountInput);
             if (accountBalance < withdrawAmount) {
                 modelAndView.setViewName("notEnoughMoney");
-            } else if (!pinInput.equals(bankAccountService.getPinCode(accountId))) {
+            } else if (!pinInput.equals(foundAccount.getPinCode())) {
                 modelAndView.setViewName("incorrectPin");
             } else {
-                bankAccountService.withdrawMoney(accountBalance, withdrawAmount, accountId);
+                bankAccountService.withdrawMoney(withdrawAmount, accountId);
                 modelAndView.setViewName("redirect:/");
             }
         }
@@ -127,15 +126,13 @@ public class BankAccountsController {
             modelAndView.setViewName("accountNotFound");
         } else {
             int senderAccountBalance = senderAccount.getBalance();
-            int receiverAccountBalance = receiverAccount.getBalance();
             int transferAmount = Integer.parseInt(transferAmountInput);
-            if (!pinInput.equals(bankAccountService.getPinCode(senderAccountId))) {
+            if (!pinInput.equals(senderAccount.getPinCode())) {
                 modelAndView.setViewName("incorrectPin");
             } else if (senderAccountBalance < transferAmount) {
                 modelAndView.setViewName("notEnoughMoney");
             } else {
-                bankAccountService.withdrawMoney(senderAccountBalance, transferAmount, senderAccountId);
-                bankAccountService.depositMoney(receiverAccountBalance, transferAmount, receiverAccountId);
+                bankAccountService.transferMoney(senderAccountId, receiverAccountId, transferAmount);
                 modelAndView.setViewName("redirect:/");
             }
         }

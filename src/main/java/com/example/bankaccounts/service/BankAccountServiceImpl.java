@@ -23,36 +23,34 @@ public class BankAccountServiceImpl implements BankAccountService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<BankAccount> getAccounts() {
         return bankAccountRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public BankAccount findAccount(int id) {
         return bankAccountRepository.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
-    public void depositMoney(int accountBalance, int depositAmount, int accountId) {
-        bankAccountRepository.modifyBalance(accountBalance+depositAmount, accountId);
+    public void depositMoney(int depositAmount, int accountId) {
+        bankAccountRepository.depositMoney(depositAmount, accountId);
     }
 
     @Override
     @Transactional
-    public void withdrawMoney(int accountBalance, int withdrawAmount, int accountId) {
-        bankAccountRepository.modifyBalance(accountBalance-withdrawAmount, accountId);
+    public void withdrawMoney(int withdrawAmount, int accountId) {
+        bankAccountRepository.withdrawMoney(withdrawAmount, accountId);
 
     }
-
 
     @Override
-    public String getPinCode(int accountId) {
-        return bankAccountRepository.getPinCode(accountId);
+    @Transactional
+    public void transferMoney(int senderAccountId, int receiverAccountId, int transferAmount) {
+        bankAccountRepository.withdrawMoney(transferAmount, senderAccountId);
+        bankAccountRepository.depositMoney(transferAmount, receiverAccountId);
     }
-
-//    @Override
-//    @Transactional
-//    public void transferMoney(int amount) {
-//    }
 }
