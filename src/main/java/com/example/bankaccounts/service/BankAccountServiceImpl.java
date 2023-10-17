@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class BankAccountServiceImpl implements BankAccountService {
 
@@ -18,7 +20,12 @@ public class BankAccountServiceImpl implements BankAccountService {
 
     @Override
     public void createAccount(BankAccount account) {
-        bankAccountDAO.createAccount(account.getName(), account.getPinCode(), account.getBalance());
+        bankAccountDAO.createAccount(account);
+    }
+
+    @Override
+    public List<BankAccount> getAccounts() {
+        return bankAccountDAO.getAccounts();
     }
 
 

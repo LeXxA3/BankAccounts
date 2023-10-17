@@ -1,10 +1,14 @@
 package com.example.bankaccounts.dao;
 
+import com.example.bankaccounts.model.BankAccount;
+
+import java.util.List;
+
 public interface BankAccountDAO {
 
-    void createAccount(String name, String pinCode, int balance);
+    void createAccount(BankAccount bankAccount);
 
-    void getAllAccounts();
+    List<BankAccount> getAccounts();
 
     void editAccountBalance(int balanceChangeValue);
 

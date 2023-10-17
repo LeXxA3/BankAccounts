@@ -1,23 +1,37 @@
 package com.example.bankaccounts.dao;
 
-import org.springframework.context.annotation.ComponentScan;
+import com.example.bankaccounts.model.BankAccount;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class BankAccountDAOImpl implements BankAccountDAO {
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Transactional
     @Override
-    public void createAccount(String name, String pinCode, int balance) {
-        System.out.println(name);
-        System.out.println(pinCode);
-        System.out.println(balance);
+    public void createAccount(BankAccount bankAccount) {
+        System.out.println(bankAccount.getName());
+        System.out.println(bankAccount.getPinCode());
+        System.out.println(bankAccount.getBalance());
+
+        entityManager.persist(bankAccount);
     }
 
+    @Transactional
     @Override
-    public void getAllAccounts() {
+    public List<BankAccount> getAccounts() {
+        String jpql = "SELECT b FROM BankAccount b";
+        TypedQuery<BankAccount> query = entityManager.createQuery(jpql, BankAccount.class);
 
+        return query.getResultList();
     }
 
     @Override

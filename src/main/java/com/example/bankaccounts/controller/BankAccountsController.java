@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class BankAccountsController {
 
     private BankAccountService bankAccountService;
-
     @Autowired
     public void setBankAccountService(BankAccountService bankAccountService) {
         this.bankAccountService = bankAccountService;
@@ -29,9 +31,19 @@ public class BankAccountsController {
     }
 
     @PostMapping("/createAccount")
-    public String createAccount(@ModelAttribute("bankAccount") BankAccount account) {
+    public String createAccount(BankAccount account) {
         bankAccountService.createAccount(account);
         return "redirect:/";
+    }
+
+    @GetMapping("/listOfAccounts")
+    public ModelAndView accountList() {
+        List<BankAccount> accountsList = bankAccountService.getAccounts();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("listOfAccounts");
+        modelAndView.addObject("accountsList", accountsList);
+
+        return modelAndView;
     }
 
 }
