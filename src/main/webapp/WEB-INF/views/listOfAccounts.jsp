@@ -19,11 +19,13 @@
     <c:when test="${fn:length(accountsList) > 0}">
         <table>
             <tr>
+                <th>Account ID</th>
                 <th>Account name</th>
                 <th>balance</th>
             </tr>
             <c:forEach var="account" items="${accountsList}">
                 <tr>
+                    <td>${account.id}</td>
                     <td>${account.name}</td>
                     <td>${account.balance}</td>
                 </tr>

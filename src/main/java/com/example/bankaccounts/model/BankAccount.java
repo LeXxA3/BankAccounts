@@ -1,6 +1,8 @@
 package com.example.bankaccounts.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+import org.springframework.data.jpa.repository.Modifying;
 
 @Entity
 @Table(name = "accounts")
@@ -14,6 +16,7 @@ public class BankAccount {
     @Column(name = "name")
     private String name;
 
+    @Size(min = 4, max = 4)
     @Column(name = "pin code")
     private String pinCode;
 
@@ -51,4 +54,6 @@ public class BankAccount {
     public void setBalance(int balance) {
         this.balance = balance;
     }
+
+
 }

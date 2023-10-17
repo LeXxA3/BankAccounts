@@ -15,9 +15,15 @@
 <body>
 <h1>Hello! This is Bank Homepage!</h1>
 <h3>
-<a href="/createAccount">Create account</a>
-|
-<a href="/listOfAccounts">Display existing accounts</a>
+    <a href="/createAccount">Create account</a>
+    |
+    <a href="/listOfAccounts">Display existing accounts</a>
+    <br>
+    <a href="/deposit">Deposit money</a>
+    |
+    <a href="/withdraw">Withdraw money</a>
+    |
+    <a href="/transfer">Transfer money</a>
 </h3>
 </body>
 </html>

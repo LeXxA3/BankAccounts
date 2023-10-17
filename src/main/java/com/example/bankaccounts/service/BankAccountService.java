@@ -10,12 +10,15 @@ public interface BankAccountService {
 
     List<BankAccount> getAccounts();
 
-    void authorize(BankAccount account);
+    BankAccount findAccount(int accountId);
 
-    void depositMoney(int amount);
 
-    void withdrawMoney(int amount);
+    String getPinCode(int accountId);
 
-    void transferMoney(int amount);
+    void depositMoney(int accountBalance, int depositAmount, int accountId);
+
+    public void withdrawMoney(int accountBalance, int withdrawAmount, int accountId);
+
+//    void transferMoney(int amount);
 
 }

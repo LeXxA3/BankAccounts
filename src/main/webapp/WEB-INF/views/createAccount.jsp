@@ -12,17 +12,20 @@
     <title>Create Account</title>
 </head>
 <body>
+<h2>Account creation</h2>
 <form action="/createAccount" method="POST">
-  <label for="name">Enter account name:</label>
+  <label for="accountName">Enter account name:</label>
   <br>
-  <input type="text" name="name" id="name">
+  <input type="text" name="name" id="accountName">
   <br><br>
-  <label for="pin Code">Enter PIN code</label>
+  <label for="pin Code">Enter 4-digit PIN code</label>
   <br>
   <input type="text" name="pinCode" id="pin Code">
   <br><br>
   <input type="submit" value="Create account">
 </form>
-
+<h3>
+  <a href="/">Back to Homepage</a>
+</h3>
 </body>
 </html>
